@@ -5,6 +5,10 @@ import {
   BarChart3,
   CircleCheck,
   Handshake,
+  Megaphone,
+  Globe2,
+  ShieldCheck,
+  Sparkles,
   Phone,
   Users,
 } from "lucide-react";
@@ -12,6 +16,38 @@ import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { useEffect, useState } from "react";
+
+function CountUp({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    if (!started) return;
+    const duration = 1400;
+    const start = performance.now();
+    let frame = 0;
+
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      setCount(Math.round((1 - Math.pow(1 - progress, 3)) * value));
+      if (progress < 1) frame = requestAnimationFrame(tick);
+    };
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [started, value]);
+
+  return (
+    <motion.span
+      onViewportEnter={() => setStarted(true)}
+      viewport={{ once: true }}
+    >
+      {count}
+      {suffix}
+    </motion.span>
+  );
+}
 
 const services = [
   {
@@ -79,7 +115,7 @@ export default function Home() {
               Des solutions <span className="text-[#ffb3bd]">stratégiques</span> pour la RDC
             </motion.h1>
             <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: .6 }} className="mt-6 max-w-md text-sm leading-6 text-white/70">
-              We provide expert business consulting services to help companies grow, optimize operations, and achieve sustainable success.
+              Nous aidons les marques et organisations congolaises à mieux se positionner, mieux communiquer et obtenir des résultats durables.
             </motion.p>
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: .6 }} className="mt-8 flex flex-wrap items-center gap-6">
               <AccentButton>Prendre rendez-vous</AccentButton>
@@ -91,6 +127,29 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="border-b border-[#571426]/10 bg-white"
+      >
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-6 py-10 sm:grid-cols-4">
+          {[
+            ["Projets accompagnés", 120, "+"],
+            ["Villes couvertes", 8, ""],
+            ["Taux de satisfaction", 95, "%"],
+            ["Années d'expérience", 6, "+"],
+          ].map(([label, value, suffix]) => (
+            <div key={label} className="text-center sm:text-left">
+              <p className="text-3xl font-semibold tracking-tight text-[#d7263d] sm:text-4xl">
+                <CountUp value={value as number} suffix={suffix as string} />
+              </p>
+              <p className="mt-2 text-[10px] font-semibold uppercase tracking-widest text-[#38131b]/55">{label}</p>
+            </div>
+          ))}
+        </div>
+      </motion.section>
 
       <section id="services" className="mx-auto max-w-7xl px-6 py-20 sm:py-28">
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .3 }} transition={{ duration: .6 }} className="mb-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
@@ -137,6 +196,65 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
+      </section>
+
+      <section className="bg-[#fff1f2] px-6 py-20 sm:py-28">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.8fr_1.2fr]">
+          <motion.div initial={{ opacity: 0, x: -25 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: .25 }}>
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-[#d7263d]">✦ Notre expertise</p>
+            <h2 className="text-3xl font-semibold leading-tight sm:text-5xl">La communication qui fait avancer les idées.</h2>
+            <p className="mt-5 max-w-md text-sm leading-6 text-[#38131b]/65">De la stratégie au contenu, nous construisons une présence de marque cohérente pour créer de la confiance et générer des opportunités.</p>
+            <a href="/about" className="mt-7 inline-flex items-center gap-2 text-xs font-bold text-[#d7263d]">Découvrir notre approche <ArrowUpRight size={14} /></a>
+          </motion.div>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: .2 }} variants={{ hidden: {}, visible: { transition: { staggerChildren: .1 } } }} className="grid gap-3 sm:grid-cols-2">
+            {[
+              [Megaphone, "Stratégie de communication", "Un cap clair, un message fort et une identité qui vous ressemble."],
+              [Globe2, "Présence digitale", "Des contenus pensés pour toucher les publics congolais et africains."],
+              [ShieldCheck, "Réputation de marque", "Une image crédible qui inspire confiance à vos clients et partenaires."],
+              [Sparkles, "Créativité utile", "Des idées originales au service de vos objectifs business."],
+            ].map(([Icon, title, text]) => {
+              const ServiceIcon = Icon as typeof Megaphone;
+              return (
+                <motion.article key={title as string} variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="rounded-xl bg-white p-5">
+                  <ServiceIcon className="size-6 text-[#d7263d]" />
+                  <h3 className="mt-5 text-sm font-bold">{title as string}</h3>
+                  <p className="mt-2 text-xs leading-5 text-[#38131b]/60">{text as string}</p>
+                </motion.article>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      <section id="insights" className="mx-auto max-w-7xl px-6 py-20 sm:py-28">
+        <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+          <div>
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-[#d7263d]">✦ Notre méthode</p>
+            <h2 className="text-3xl font-semibold sm:text-5xl">Du premier échange à l&apos;impact.</h2>
+          </div>
+          <p className="max-w-sm text-xs leading-5 text-[#38131b]/60">Un processus simple pour transformer vos enjeux de communication en résultats visibles.</p>
+        </div>
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {[
+            ["01", "Écouter & comprendre", "Nous commençons par vos objectifs, votre public et votre réalité terrain."],
+            ["02", "Construire & créer", "Nous concevons une stratégie et des contenus alignés à votre identité."],
+            ["03", "Mesurer & améliorer", "Nous suivons les résultats et faisons évoluer les actions avec agilité."],
+          ].map(([number, title, text], index) => (
+            <motion.article key={number} initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .25 }} transition={{ delay: index * .12 }} className="rounded-xl border border-[#571426]/10 bg-white p-7">
+              <span className="text-4xl font-semibold text-[#ffb3bd]">{number}</span>
+              <h3 className="mt-8 text-lg font-semibold">{title}</h3>
+              <p className="mt-3 text-xs leading-5 text-[#38131b]/60">{text}</p>
+            </motion.article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-6 mb-20 overflow-hidden rounded-2xl bg-[#571426] px-6 py-14 text-center text-white sm:px-12">
+        <motion.div initial={{ opacity: 0, scale: .96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: .6 }} className="mx-auto max-w-2xl">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-[#ffb3bd]">✦ Votre prochain chapitre</p>
+          <h2 className="mt-4 text-3xl font-semibold sm:text-5xl">Prêt à donner plus d&apos;impact à votre communication ?</h2>
+          <a href="#contact" className="mt-7 inline-flex items-center gap-3 rounded-full bg-[#d7263d] px-5 py-3 text-[11px] font-bold">Parlons de votre projet <ArrowUpRight size={14} /></a>
+        </motion.div>
       </section>
 
       <SiteFooter />
