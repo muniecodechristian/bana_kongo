@@ -126,5 +126,11 @@
   }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
+  }
+
+  a,
+  button {
+    cursor: pointer;
   }
 }
