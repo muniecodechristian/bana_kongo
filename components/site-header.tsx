@@ -3,6 +3,7 @@
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -16,6 +17,7 @@ const links = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#ffb3bd]/20 bg-[#571426] text-white shadow-xl shadow-[#571426]/20 backdrop-blur-md">
@@ -27,18 +29,20 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-8 text-[11px] font-semibold md:flex" aria-label="Navigation principale">
-          {links.map(([label, href]) => (
-            <Link key={href} href={href} className="transition-colors hover:text-[#ffb3bd]">
-              {label}
-            </Link>
-          ))}
+          {links.map(([label, href]) => {
+            const isActive = pathname === href || (href === "/#insights" && pathname === "/");
+            return (
+              <Link
+                key={href}
+                href={href}
+                className={`transition-colors hover:text-[#ffb3bd] ${isActive ? "text-[#ffb3bd]" : "text-white/80"}`}
+              >
+                {label}
+              </Link>
+            );
+          })}
         </nav>
 
-        <div className="hidden md:block">
-          <Link href="/#contact" className="inline-flex items-center gap-2 rounded-full bg-[#d7263d] px-4 py-2 text-[10px] font-bold transition-transform hover:scale-105">
-            Prendre rendez-vous <ArrowUpRight size={13} />
-          </Link>
-        </div>
 
         <button
           type="button"
@@ -64,14 +68,19 @@ export function SiteHeader() {
             aria-label="Navigation mobile"
           >
             <div className="mx-auto flex max-w-7xl flex-col px-6 pb-5 pt-2">
-              {links.map(([label, href]) => (
-                <Link key={href} href={href} onClick={() => setOpen(false)} className="border-b border-white/10 py-4 text-sm font-medium hover:text-[#ffb3bd]">
-                  {label}
-                </Link>
-              ))}
-              <Link href="/#contact" onClick={() => setOpen(false)} className="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-[#d7263d] px-4 py-3 text-xs font-bold">
-                Prendre rendez-vous <ArrowUpRight size={14} />
-              </Link>
+              {links.map(([label, href]) => {
+                const isActive = pathname === href || (href === "/#insights" && pathname === "/");
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={() => setOpen(false)}
+                    className={`border-b border-white/10 py-4 text-sm font-medium ${isActive ? "text-[#ffb3bd]" : "text-white/80 hover:text-[#ffb3bd]"}`}
+                  >
+                    {label}
+                  </Link>
+                );
+              })}
             </div>
           </motion.nav>
         )}
@@ -79,3 +88,4 @@ export function SiteHeader() {
     </header>
   );
 }
+
