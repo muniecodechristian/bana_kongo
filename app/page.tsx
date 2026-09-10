@@ -52,29 +52,31 @@ function CountUp({ value, suffix = "" }: { value: number; suffix?: string }) {
 const services = [
   {
     icon: Users,
-    title: "Next-gen human\nresources",
-    text: "We provide expert business consulting services to help companies grow.",
+    title: "Ressources humaines\nde nouvelle génération",
+    text: "Nous accompagnons les équipes pour mieux structurer, motiver et faire grandir leur performance.",
     style: "bg-white text-[#38131b]",
   },
   {
     icon: BarChart3,
-    title: "Market growth\nconsulting",
-    text: "Identify new opportunities and accelerate sustainable business growth.",
+    title: "Croissance\ncommerciale",
+    text: "Nous identifions les meilleures opportunités pour accélérer votre développement durable.",
     style: "bg-[#ffb3bd] text-[#571426]",
   },
   {
     icon: Handshake,
-    title: "Business process\nimprovement",
-    text: "Optimize workflows to increase efficiency, productivity, and performance.",
+    title: "Amélioration des\nprocessus",
+    text: "Nous optimisons vos flux de travail pour gagner en efficacité, en productivité et en résultat.",
     style: "bg-[#571426] text-white",
   },
 ];
 
 function AccentButton({ children }: { children: ReactNode }) {
+  const mailtoHref = `mailto:Techplus643@gmail.com?subject=${encodeURIComponent("Demande de projet")}&body=${encodeURIComponent("Bonjour Techplus,\n\nJe souhaite discuter d'un projet.\n\nMerci de me recontacter.")}`;
+
   return (
     <motion.a
-      href="#contact"
-      className="group inline-flex items-center gap-3 rounded-full bg-[#d7263d] px-5 py-3 text-[11px] font-bold uppercase tracking-wide text-white transition-transform hover:-translate-y-0.5"
+      href={mailtoHref}
+      className="group inline-flex cursor-pointer items-center gap-3 rounded-full bg-[#d7263d] px-5 py-3 text-[11px] font-bold uppercase tracking-wide text-white transition-transform hover:-translate-y-0.5"
       whileHover={{ scale: 1.04 }}
       whileTap={{ scale: 0.97 }}
     >
@@ -91,9 +93,9 @@ export default function Home() {
     <main className="overflow-hidden bg-[#fff7f7] text-[#38131b]">
       <div className="bg-[#ffb3bd] px-6 py-2 text-[10px] font-medium text-[#571426]">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <span>● We&apos;re top business consulting agency</span>
-          <span className="hidden sm:inline">✉ contact@techplus.cd</span>
-          <span className="hidden sm:inline">Follow Us　—　f　𝕏　◎</span>
+          <span>Agence de communication et conseil</span>
+          <span className="hidden sm:inline">✉ Techplus643@gmail.com</span>
+          <span className="hidden sm:inline">Suivez-nous</span>
         </div>
       </div>
       <SiteHeader />
@@ -103,13 +105,13 @@ export default function Home() {
           className="absolute inset-0 bg-cover bg-center opacity-90"
           style={{
             backgroundImage:
-              "linear-gradient(90deg, rgba(87,20,38,.98) 0%, rgba(87,20,38,.88) 39%, rgba(87,20,38,.15) 75%), url('https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=1800&q=85')",
+              "linear-gradient(90deg, rgba(87,20,38,.98) 0%, rgba(87,20,38,.88) 39%, rgba(87,20,38,.15) 75%), url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1800&q=85')",
           }}
         />
         <div className="relative z-10 mx-auto flex max-w-7xl items-center px-6 pb-28 pt-24">
           <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: .12, delayChildren: .25 } } }} className="max-w-xl text-white">
             <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[10px]">
-              <span className="text-[#ffb3bd]">4.9　★★★★★</span> 5K+ avis
+              <span className="text-[#ffb3bd]">4,9/5</span> • 5 000 avis clients
             </div>
             <motion.h1 variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: .7 }} className="text-5xl font-semibold leading-[1.05] tracking-[-.04em] sm:text-7xl">
               Des solutions <span className="text-[#ffb3bd]">stratégiques</span> pour la RDC
@@ -121,7 +123,12 @@ export default function Home() {
               <AccentButton>Prendre rendez-vous</AccentButton>
               <div className="flex items-center gap-3 text-[10px] text-white/70">
                 <span className="grid size-10 place-items-center rounded-full bg-[#d7263d] text-white"><Phone size={16} /></span>
-                APPELEZ-NOUS<br /><b className="text-white">+243 81 000 00 00</b>
+                <span>
+                  APPELEZ-NOUS<br />
+                  <a href="tel:+243995424606" className="text-white font-bold">0995424606</a>
+                  <span className="mx-1">/</span>
+                  <a href="tel:+243837807301" className="text-white font-bold">+243 837 807 301</a>
+                </span>
               </div>
             </motion.div>
           </motion.div>
@@ -154,7 +161,7 @@ export default function Home() {
       <section id="services" className="mx-auto max-w-7xl px-6 py-20 sm:py-28">
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .3 }} transition={{ duration: .6 }} className="mb-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <div>
-            <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-[#d7263d]">✦ Notre approche</p>
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-[#d7263d]">Notre approche</p>
             <h2 className="max-w-md text-3xl font-semibold leading-tight sm:text-4xl">Les clés d&apos;une croissance durable</h2>
           </div>
           <p className="max-w-sm text-xs leading-5 text-[#38131b]/60">Des méthodes concrètes pour améliorer vos processus, renforcer votre organisation et développer votre activité en RDC.</p>
@@ -169,7 +176,7 @@ export default function Home() {
                   <h3 className="whitespace-pre-line text-lg font-medium leading-tight">{service.title}</h3>
                   <p className="mt-3 max-w-xs text-xs leading-5 opacity-60">{service.text}</p>
                 </div>
-                <a href="#contact" className="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-[#fff1f2] px-3 py-2 text-[10px] font-semibold text-[#571426]">En savoir plus <ArrowUpRight size={13} /></a>
+                <a href="/about" className="mt-5 inline-flex w-fit cursor-pointer items-center gap-2 rounded-full bg-[#fff1f2] px-3 py-2 text-[10px] font-semibold text-[#571426]">En savoir plus <ArrowUpRight size={13} /></a>
               </motion.article>
             );
           })}
@@ -177,22 +184,49 @@ export default function Home() {
       </section>
 
       <section id="about" className="bg-white px-6 py-20 sm:py-28">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
-          <motion.div initial={{ opacity: 0, x: -35 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .7 }} className="grid grid-cols-2 gap-3">
-            <motion.div whileHover={{ scale: 1.02 }} className="col-span-2 h-64 rounded-xl bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=85')" }} />
-            <div className="grid h-32 place-items-center rounded-xl bg-[#ffb3bd] text-center">
-              <div><CircleCheck className="mx-auto mb-1 size-5" /><strong className="text-2xl">10K+</strong><p className="text-[10px]">Completed works</p></div>
+        <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+          <motion.div initial={{ opacity: 0, x: -35 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .7 }} className="space-y-4">
+            <motion.div whileHover={{ scale: 1.02 }} className="overflow-hidden rounded-[28px] bg-cover bg-center shadow-[0_30px_80px_rgba(87,20,38,0.12)]" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=1000&q=85')", height: "430px" }} />
+            <div className="grid grid-cols-[1fr_1.2fr] gap-4">
+              <div className="grid place-items-center rounded-[24px] bg-[#f7d5dc] p-6 text-[#38131b]">
+                <div className="flex items-center justify-center rounded-full border border-[#38131b]/15 bg-white/40 p-3 text-xl">
+                  <CircleCheck className="size-6" />
+                </div>
+                <div className="mt-4 text-4xl font-semibold">10K+</div>
+                <div className="text-[10px] uppercase tracking-[0.18em]">Completed works</div>
+              </div>
+              <div className="overflow-hidden rounded-[24px] bg-cover bg-center shadow-[0_20px_60px_rgba(87,20,38,0.08)]" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&w=900&q=85')", minHeight: "180px" }} />
             </div>
-            <div className="h-32 rounded-xl bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=700&q=85')" }} />
           </motion.div>
-          <motion.div initial={{ opacity: 0, x: 35 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .7 }} >
-            <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-[#d7263d]">✦ Qui sommes-nous ?</p>
-            <h2 className="text-3xl font-semibold leading-tight sm:text-5xl">Votre partenaire pour l&apos;excellence professionnelle</h2>
-            <p className="mt-5 text-sm leading-6 text-[#38131b]/60">Nous aidons les entrepreneurs et organisations congolaises à clarifier leur vision, améliorer leur performance et construire une croissance solide.</p>
-            <div className="mt-7 flex flex-wrap items-center gap-5"><AccentButton>À propos de nous</AccentButton><span className="text-xs"><b>Moris S. Barbar</b><br /><small className="text-[#38131b]/50">Directeur — Tech+ RDC</small></span></div>
-            <div className="mt-10 grid grid-cols-2 gap-3">
-              <div className="rounded-xl bg-[#fff1f2] p-5"><span className="text-4xl font-semibold">4.9</span><span className="text-xs"> /5.0</span><p className="mt-3 text-xs text-[#38131b]/60">Note moyenne</p></div>
-              <div className="rounded-xl bg-[#fff1f2] p-5"><p className="text-xs font-semibold">Nos expertises</p><p className="mt-5 text-[10px] leading-5 text-[#38131b]/60">STRATÉGIE　 CONSEIL<br />CROISSANCE　 FORMATION<br />ORGANISATION</p></div>
+
+          <motion.div initial={{ opacity: 0, x: 35 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .7 }} className="lg:pl-4">
+            <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.25em] text-[#d7263d]">Qui sommes-nous ?</p>
+            <h2 className="text-5xl font-semibold leading-[0.95] tracking-[-0.04em] text-[#1b1b1b] sm:text-[4.1rem]">Votre partenaire pour l&apos;excellence professionnelle</h2>
+            <p className="mt-6 max-w-md text-base leading-7 text-[#38131b]/65">Nous aidons les entrepreneurs et organisations congolaises à clarifier leur vision, améliorer leur performance et construire une croissance solide.</p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-5">
+              <AccentButton>À propos de nous</AccentButton>
+              <div className="flex items-center gap-3">
+                <span className="grid size-12 place-items-center rounded-full bg-[#f7d5dc] text-[#d7263d]">
+                  <Sparkles className="size-4" />
+                </span>
+                <span className="text-sm">
+                  <b className="block">Créativité utile</b>
+                  <small className="text-[#38131b]/50">Des idées originales au service de vos objectifs.</small>
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+              <div className="rounded-[20px] bg-[#f7d5dc] p-5 text-[#38131b]">
+                <div className="text-5xl font-semibold leading-none">4.9</div>
+                <div className="mt-2 text-sm font-medium">/ 5.0</div>
+                <p className="mt-4 text-[10px] uppercase tracking-[0.2em] text-[#38131b]/60">Note moyenne</p>
+              </div>
+              <div className="rounded-[20px] bg-[#fff1f2] p-5 text-[#38131b]">
+                <p className="text-xl font-semibold">Nos expertises</p>
+                <p className="mt-4 text-[11px] leading-6 text-[#38131b]/60">STRATÉGIE — CONSEIL<br />CROISSANCE — FORMATION<br />ORGANISATION</p>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -201,7 +235,7 @@ export default function Home() {
       <section className="bg-[#fff1f2] px-6 py-20 sm:py-28">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.8fr_1.2fr]">
           <motion.div initial={{ opacity: 0, x: -25 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: .25 }}>
-            <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-[#d7263d]">✦ Notre expertise</p>
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-[#d7263d]">Notre expertise</p>
             <h2 className="text-3xl font-semibold leading-tight sm:text-5xl">La communication qui fait avancer les idées.</h2>
             <p className="mt-5 max-w-md text-sm leading-6 text-[#38131b]/65">De la stratégie au contenu, nous construisons une présence de marque cohérente pour créer de la confiance et générer des opportunités.</p>
             <a href="/about" className="mt-7 inline-flex items-center gap-2 text-xs font-bold text-[#d7263d]">Découvrir notre approche <ArrowUpRight size={14} /></a>
@@ -229,7 +263,7 @@ export default function Home() {
       <section id="insights" className="mx-auto max-w-7xl px-6 py-20 sm:py-28">
         <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
           <div>
-            <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-[#d7263d]">✦ Notre méthode</p>
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-[#d7263d]">Notre méthode</p>
             <h2 className="text-3xl font-semibold sm:text-5xl">Du premier échange à l&apos;impact.</h2>
           </div>
           <p className="max-w-sm text-xs leading-5 text-[#38131b]/60">Un processus simple pour transformer vos enjeux de communication en résultats visibles.</p>
@@ -251,9 +285,8 @@ export default function Home() {
 
       <section className="mx-6 mb-20 overflow-hidden rounded-2xl bg-[#571426] px-6 py-14 text-center text-white sm:px-12">
         <motion.div initial={{ opacity: 0, scale: .96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: .6 }} className="mx-auto max-w-2xl">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-[#ffb3bd]">✦ Votre prochain chapitre</p>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-[#ffb3bd]">Votre prochain chapitre</p>
           <h2 className="mt-4 text-3xl font-semibold sm:text-5xl">Prêt à donner plus d&apos;impact à votre communication ?</h2>
-          <a href="#contact" className="mt-7 inline-flex items-center gap-3 rounded-full bg-[#d7263d] px-5 py-3 text-[11px] font-bold">Parlons de votre projet <ArrowUpRight size={14} /></a>
         </motion.div>
       </section>
 
