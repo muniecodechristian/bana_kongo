@@ -14,12 +14,6 @@ export function SiteFooter() {
           <h2 className="mx-auto mt-4 max-w-2xl text-3xl font-semibold tracking-tight sm:text-5xl">
             Donnons à votre communication une histoire qui compte.
           </h2>
-          <Link
-            href="/#contact"
-            className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#d7263d] px-5 py-3 text-[11px] font-bold transition-transform hover:scale-105"
-          >
-            Échanger avec Tech+ <ArrowUpRight size={14} />
-          </Link>
         </div>
 
         <div className="grid gap-10 px-6 py-12 sm:px-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
@@ -44,21 +38,21 @@ export function SiteFooter() {
               <a
                 href="#"
                 aria-label="LinkedIn"
-                className="grid size-8 place-items-center rounded-md bg-white/10 text-[11px] font-bold transition-colors hover:bg-[#d7263d]"
+                className="grid size-8 place-items-center rounded-md bg-white/10 text-[11px] font-black transition-colors hover:bg-[#d7263d]"
               >
                 in
               </a>
               <a
                 href="#"
                 aria-label="X"
-                className="grid size-8 place-items-center rounded-md bg-white/10 text-xs font-bold transition-colors hover:bg-[#d7263d]"
+                className="grid size-8 place-items-center rounded-md bg-white/10 text-[10px] font-black transition-colors hover:bg-[#d7263d]"
               >
-                𝕏
+                X
               </a>
               <a
                 href="#"
                 aria-label="Instagram"
-                className="grid size-8 place-items-center rounded-md bg-white/10 text-xs font-bold transition-colors hover:bg-[#d7263d]"
+                className="grid size-8 place-items-center rounded-md bg-white/10 text-xs font-black transition-colors hover:bg-[#d7263d]"
               >
                 ◎
               </a>
@@ -92,11 +86,13 @@ export function SiteFooter() {
               </p>
               <p>
                 <Phone className="mr-1 inline size-3 text-[#ffb3bd]" />
-                +243 81 000 00 00
+                <a href="tel:+243995424606" className="text-[#ffb3bd] hover:text-white">0995424606</a>
+                <span className="mx-1">/</span>
+                <a href="tel:+243837807301" className="text-[#ffb3bd] hover:text-white">+243 837 807 301</a>
               </p>
-              <a href="mailto:contact@techplus.cd" className="text-[#ffb3bd]">
+              <a href="mailto:Techplus643@gmail.com" className="text-[#ffb3bd]">
                 <Mail className="mr-1 inline size-3" />
-                contact@techplus.cd
+                Techplus643@gmail.com
               </a>
             </div>
           </div>
@@ -113,3 +109,4 @@ export function SiteFooter() {
     </footer>
   );
 }
+
